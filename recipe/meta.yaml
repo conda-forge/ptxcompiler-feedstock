@@ -26,7 +26,6 @@ requirements:
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - setuptools
   host:
-    - cudnn  # [cuda_compiler_version != "None"]
     - python
     - pip
     - setuptools
