@@ -14,7 +14,6 @@ source:
 
 build:
   number: 2
-  skip: true  # [not linux]
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
