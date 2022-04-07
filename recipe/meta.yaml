@@ -1,7 +1,6 @@
 {% set name = "ptxcompiler" %}
 {% set version = "0.3.0" %}
-{% set cuda_version = '.'.join(environ.get('CUDA', '11.6').split('.')[:2]) %}
-{% set cuda_major = cuda_version.split('.')[0] %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.6").split(".")[0] %}
 
 package:
   name: {{ name|lower }}
@@ -16,7 +15,9 @@ source:
 build:
   number: 2
   skip: true  # [not linux]
-  skip: true  # [cuda_compiler_version != "11.6"]
+  skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
+  ignore_run_exports_from:
+    - {{ compiler("cuda") }}
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -27,13 +28,13 @@ requirements:
   host:
     - python
     - pip
-    - cudatoolkit {{ cuda_version }}.*
+    - cudatoolkit {{ cuda_compiler_version }}
   run:
     - python
     - numba >=0.54
-    - cudatoolkit >={{ cuda_major ~ ".0" }},<={{ cuda_version }}
+    - cudatoolkit >={{ cuda_major ~ ".0" }},<={{ cuda_compiler_version }}
   run_constrained:
-    - __cuda >={{ cuda_major ~ ".0" }},<={{ cuda_version }}
+    - __cuda >={{ cuda_major ~ ".0" }},<={{ cuda_compiler_version }}
 
 test:
   imports:
