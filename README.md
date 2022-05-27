@@ -225,5 +225,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@bdice](https://github.com/bdice/)
 * [@prashantkhoje](https://github.com/prashantkhoje/)
 
