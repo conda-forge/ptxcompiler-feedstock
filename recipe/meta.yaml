@@ -1,5 +1,5 @@
 {% set name = "ptxcompiler" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.7").split(".")[0] %}
 
 package:
@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://github.com/rapidsai/ptxcompiler/archive/refs/tags/{{ version }}.tar.gz
-  sha256: d1b8783a832a36ca5ae5c3623e6730a69a44a72c249e21537ffcfce4511c9c1a
+  sha256: 3578b745ad0adf5c07bcda23656e438711429d63a77fc6564612820aa3604c11
 
 build:
-  number: 2
+  number: 0
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
