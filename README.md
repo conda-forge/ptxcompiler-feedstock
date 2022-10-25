@@ -289,6 +289,7 @@ Feedstock Maintainers
 =====================
 
 * [@bdice](https://github.com/bdice/)
+* [@gmarkall](https://github.com/gmarkall/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@prashantkhoje](https://github.com/prashantkhoje/)
 
