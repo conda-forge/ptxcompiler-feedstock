@@ -8,10 +8,10 @@ package:
 
 source:
   url: https://github.com/rapidsai/ptxcompiler/archive/refs/tags/{{ version }}.tar.gz
-  sha256: f1ef902caffc1aec7d6e5f6ec48989f9bf44f96bd65d6a4b72e46b6d24530b1f
+  sha256: f7e44e43b3d7264d1cfb9cb03ce7b792bfc6a1d4647dc956292c8a2a1c090e9f
 
 build:
-  number: 0
+  number: 2
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
