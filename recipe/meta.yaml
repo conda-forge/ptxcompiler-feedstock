@@ -1,6 +1,6 @@
 {% set name = "ptxcompiler" %}
 {% set version = "0.7.0" %}
-{% set cuda_major = environ.get("cuda_compiler_version", "11.7").split(".")[0] %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ source:
   sha256: f7e44e43b3d7264d1cfb9cb03ce7b792bfc6a1d4647dc956292c8a2a1c090e9f
 
 build:
-  number: 2
+  number: 3
   skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
