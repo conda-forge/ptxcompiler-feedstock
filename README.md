@@ -1,11 +1,11 @@
-About ptxcompiler
-=================
+About ptxcompiler-feedstock
+===========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ptxcompiler-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/rapidsai/ptxcompiler
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ptxcompiler-feedstock/blob/main/LICENSE.txt)
 
 Summary: PTX Static compiler and Numba patch
 
