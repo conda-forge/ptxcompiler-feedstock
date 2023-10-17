@@ -12,7 +12,7 @@ source:
 
 build:
   number: 1
-  skip: true  # [(not linux) or cuda_compiler_version in (undefined, "None")]
+  skip: true  # [(not linux) or cuda_compiler_version != "11.8"]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
   script: {{ PYTHON }} -m pip install . -vv
