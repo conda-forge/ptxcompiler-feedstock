@@ -15,10 +15,10 @@ build:
   skip: true  # [(not linux) or cuda_compiler_version != "11.8"]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
-  script_env:
-    - CUDA_HOME=/usr/local/cuda/targets/sbsa-linux     # [aarch64]
-    - CUDA_HOME=/usr/local/cuda/targets/ppc64le-linux  # [ppc64le]
-  script: {{ PYTHON }} -m pip install . -vv
+  script:
+    - export CUDA_HOME="${CUDA_HOME}/targets/sbsa-linux"     # [aarch64]
+    - export CUDA_HOME="${CUDA_HOME}/targets/ppc64le-linux"  # [ppc64le]
+    - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
