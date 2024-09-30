@@ -11,7 +11,7 @@ source:
   sha256: 469644ac7d1d37ab82b7213d3aae90820c3d840aa483967b006554501fe725ac
 
 build:
-  number: 2
+  number: 3
   skip: true  # [(not linux) or cuda_compiler_version != "11.8"]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
