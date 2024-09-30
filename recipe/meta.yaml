@@ -22,9 +22,11 @@ requirements:
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
+    - {{ stdlib("c") }}
   host:
     - python
     - pip
+    - setuptools
     - cudatoolkit {{ cuda_compiler_version }}
   run:
     - python
