@@ -21,7 +21,7 @@ source:
     - PR_40.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [(not linux) or cuda_compiler_version != "11.8"]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
