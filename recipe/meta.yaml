@@ -1,6 +1,9 @@
 {% set name = "ptxcompiler" %}
 {% set version = "0.8.1" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
+{% set target_name = "x86_64-linux" %}  # [linux64]
+{% set target_name = "ppc64le-linux" %}  # [ppc64le]
+{% set target_name = "sbsa-linux" %}  # [aarch64]
 
 package:
   name: {{ name|lower }}
@@ -16,8 +19,7 @@ build:
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
   script:
-    - export CUDA_HOME="${CUDA_HOME}/targets/sbsa-linux"     # [aarch64]
-    - export CUDA_HOME="${CUDA_HOME}/targets/ppc64le-linux"  # [ppc64le]
+    - export CUDA_HOME="${CUDA_HOME}/targets/{{ target_name }}"
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
