@@ -19,7 +19,7 @@ build:
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
   script:
-    - export CUDA_HOME="${CUDA_HOME}/targets/{{ target_name }}"
+    - export CUDA_HOME="${CUDA_HOME}/targets/{{ target_name }}"  # [build_platform != target_platform]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
