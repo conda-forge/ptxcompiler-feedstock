@@ -12,6 +12,13 @@ package:
 source:
   url: https://github.com/rapidsai/ptxcompiler/archive/refs/tags/{{ version }}.tar.gz
   sha256: 469644ac7d1d37ab82b7213d3aae90820c3d840aa483967b006554501fe725ac
+  patches:
+    ##########################################################
+    # Add `$CUDA_HOME/lib` to library search path.           #
+    #                                                        #
+    # xref: https://github.com/rapidsai/ptxcompiler/pull/40  #
+    ##########################################################
+    - PR_40.patch
 
 build:
   number: 3
