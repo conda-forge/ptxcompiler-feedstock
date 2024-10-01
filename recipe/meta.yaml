@@ -1,6 +1,9 @@
 {% set name = "ptxcompiler" %}
 {% set version = "0.8.1" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
+{% set target_name = "x86_64-linux" %}  # [linux64]
+{% set target_name = "ppc64le-linux" %}  # [ppc64le]
+{% set target_name = "sbsa-linux" %}  # [aarch64]
 
 package:
   name: {{ name|lower }}
@@ -9,22 +12,35 @@ package:
 source:
   url: https://github.com/rapidsai/ptxcompiler/archive/refs/tags/{{ version }}.tar.gz
   sha256: 469644ac7d1d37ab82b7213d3aae90820c3d840aa483967b006554501fe725ac
+  patches:
+    ##########################################################
+    # Add `$CUDA_HOME/lib` to library search path.           #
+    #                                                        #
+    # xref: https://github.com/rapidsai/ptxcompiler/pull/40  #
+    ##########################################################
+    - PR_40.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [(not linux) or cuda_compiler_version != "11.8"]
   ignore_run_exports_from:
     - {{ compiler("cuda") }}
-  script: {{ PYTHON }} -m pip install . -vv
+  script:
+    - export CUDA_HOME="${CUDA_HOME}/targets/{{ target_name }}"  # [build_platform != target_platform]
+    - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ compiler("cuda") }}
+    - {{ stdlib("c") }}
+    - python                              # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
   host:
     - python
     - pip
+    - setuptools
     - cudatoolkit {{ cuda_compiler_version }}
   run:
     - python
